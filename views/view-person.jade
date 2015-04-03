@@ -1,0 +1,31 @@
+extends layout
+
+block title
+    title= title
+
+block content
+    //- include include/setting
+    h1= title
+    table.table.table-hover.table-condensed.sortable
+        caption= '共' + point.length + '条记录'
+        thead
+            tr
+                th #
+                th 分数
+                th 事件
+                th 状态
+                th 更新时间
+                th(data-defaultsort='disabled') 操作
+        tbody
+            each p, index in point
+                tr(class=(p.status==='进行中' ? 'warning' : 'success'))
+                    td= index+1
+                    td= p.score
+                    td= p.action
+                    td= p.status
+                    td= p.updateTime
+                    td
+                        a.btn.btn-xs.btn-primary(href='/editPoint/'+ person.name + '/' +p._id) 编辑
+                        a.btn.btn-xs.btn-danger(href='/deletePoint/'+ person.name + '/' +p._id) 删除
+    a.btn.btn-info(href='/') 返回首页
+    include include/delete-comfirm-modal

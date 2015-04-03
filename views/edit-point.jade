@@ -1,0 +1,30 @@
+extends layout
+
+block title
+    title= title
+
+block content
+    h1= title
+    form.form-inline(action='/updatePoint', method='post')
+        .form-group
+            label 人员
+            input.form-control.input-sm(name='person', value=person.name, readonly)
+        .form-group
+            label 分数
+            input.form-control.input-sm(type='number', name='score', min='1', required, value=point.score)
+        .form-group
+            label 事件
+            input.form-control.input-sm(name='action', required, value=point.action)
+        .form-group
+            label 状态
+            select.form-control.input-sm(name='status')
+                if point.status==='已完成'
+                    option(value='已完成', selected) 已完成
+                    option(value='进行中') 进行中
+                else
+                    option(value='已完成') 已完成
+                    option(value='进行中', selected) 进行中
+        input(type='hidden', name='id', value=point._id)
+        button.btn.btn-primary.btn-sm(type='submit') 保存
+        a.btn.btn-info.btn-sm(href='/viewPerson/' + person.name) 取消
+

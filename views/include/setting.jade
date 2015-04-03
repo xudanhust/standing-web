@@ -1,0 +1,6 @@
+form#setting.form-inline(action='/', method='post')
+    label 时段选择
+    input.form-control.input-sm(type='date', name='start', required, value=start)
+    |  -
+    input.form-control.input-sm(type='date', name='end', required, value=end)
+    button.btn.btn-primary.btn-sm(type='submit') 提交

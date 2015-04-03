@@ -1,0 +1,12 @@
+.modal.fade
+    .modal-dialog
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+                h4.modal-title 请注意
+            .modal-body
+                p 删除的数据将不可恢复，请谨慎操作
+            .modal-footer
+                button.btn.btn-default(type='button', data-dismiss='modal') 取消
+                a.btn.btn-danger 确定删除

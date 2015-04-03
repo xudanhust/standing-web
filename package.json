@@ -1,0 +1,19 @@
+{
+  "name": "standing",
+  "version": "1.0.0",
+  "description": "积分管理系统",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xudanhust",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3",
+    "jade": "^1.9.2",
+    "moment": "^2.9.0",
+    "mongoose": "^3.8.25",
+    "serve-static": "^1.9.2"
+  }
+}

@@ -1,0 +1,57 @@
+extends layout
+
+block title
+    title= title
+
+block content
+    include include/setting
+    h1= title
+    h2 人员积分表
+    table.table.table-striped.table-hover.table-condensed.sortable
+        if dateLimit
+            caption= '从' + start + '到' + end
+        thead
+            tr
+                th #
+                th 姓名
+                th 已完成积分
+                th 未完成积分
+                th(data-defaultsort='disabled') 操作
+        tbody
+            each person, index in persons
+                tr
+                    td= index+1
+                    td
+                        a(href='/viewPerson/'+person.name)= person.name
+                    td= person.scoreFinished
+                    td= person.scoreGoing
+                    td
+                        a.btn.btn-xs.btn-danger(href='/deletePerson/'+person.name) 删除此人
+    hr
+    h2 添加人员
+    form.form-inline(action='/addPerson', method='post')
+        .form-group
+            label 姓名
+            input.form-control.input-sm(name='name', required)
+        button.btn.btn-primary.btn-sm(type='submit') 添加
+    hr
+    h2 添加积分记录
+    form.form-inline(action='/addPoint', method='post')
+        .form-group
+            label 人员
+            select.form-control.input-sm(name='person')
+                each person in persons
+                    option(value=person.name)= person.name
+        .form-group
+            label 分数
+            input.form-control.input-sm(type='number', name='score', min='1', required)
+        .form-group
+            label 事件
+            input.form-control.input-sm(name='action', required)
+        .form-group
+            label 状态
+            select.form-control.input-sm(name='status')
+                option(value='已完成') 已完成
+                option(value='进行中') 进行中
+        button.btn.btn-primary.btn-sm(type='submit') 添加
+    include include/delete-comfirm-modal
